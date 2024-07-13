@@ -1,5 +1,5 @@
-pandas==1.4.4
-Pillow==9.4.0
-fuzzywuzzy==0.18.0
-requests==2.28.2
-python-Levenshtein==0.12.2
+pandas
+Pillow
+fuzzywuzzy
+requests
+python-Levenshtein
