@@ -32,7 +32,7 @@ To set up the Streamlit Bookstore App, follow these steps:
 2. Create a virtual environment (optional but recommended):
    ```
    python -m venv bookstore_env
-   source bookstore_env/bin/activate  # On Windows, use: bookstore_env\Scripts\activate
+   source bookstore_env/bin/activate
    ```
 
 3. Install the required packages:
