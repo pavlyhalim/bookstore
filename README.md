@@ -58,7 +58,7 @@ To run the Streamlit Bookstore App:
 
 1. Activate your virtual environment if you're using one:
    ```
-   source bookstore_env/bin/activate  # On Windows, use: bookstore_env\Scripts\activate
+   source bookstore_env/bin/activate
    ```
 
 2. Run the Streamlit app:
