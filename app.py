@@ -8,19 +8,31 @@ import base64
 import io
 import requests
 
-# Set page config
 st.set_page_config(layout="wide", page_title="Online Bookstore")
 
-# Global variables
 IMAGE_MAPPING = {}
 df = None
 
-# EmailJS configuration
 EMAILJS_PUBLIC_KEY = ""
 EMAILJS_SERVICE_ID = ""
 EMAILJS_TEMPLATE_ID = ""
 
-# Function to send email using EmailJS
+def categorize_book(book_name):
+    categories = {
+        "Engineering": ["engineering", "mechanics", "electrical", "civil", "chemical"],
+        "Computer Science": ["computer", "programming", "software", "algorithm", "data structure"],
+        "Music": ["music", "audio", "sound", "acoustic"],
+        "Economics": ["economics", "econometrics", "finance", "market"],
+        "Business": ["business", "management", "marketing", "entrepreneurship"],
+        "Mathematics": ["mathematics", "algebra", "calculus", "geometry", "statistics"]
+    }
+    
+    book_name_lower = book_name.lower()
+    for category, keywords in categories.items():
+        if any(keyword in book_name_lower for keyword in keywords):
+            return category
+    return "Other"
+
 def send_email(name, email, phone, address, order_summary):
     url = "https://api.emailjs.com/api/v1.0/email/send"
     message = f"""
@@ -49,7 +61,6 @@ Address: {address}
     response = requests.post(url, json=data, headers=headers)
     return response.status_code == 200
 
-# Function to match book titles with image filenames
 def match_books_with_images(book_names, image_dir):
     image_mapping = {}
     image_files = [f for f in os.listdir(image_dir) if f.endswith(('.jpeg', '.jpg', '.png'))]
@@ -60,7 +71,6 @@ def match_books_with_images(book_names, image_dir):
     
     return image_mapping
 
-# Load and clean the data
 @st.cache
 def load_data():
     df = pd.read_csv('books_counts.csv')
@@ -68,10 +78,10 @@ def load_data():
     df = df[df['Book'] != '']
     df['Count'] = pd.to_numeric(df['Count'], errors='coerce')
     df = df.dropna()
-    df['Price'] = 0  # Set all prices to 0
+    df['Price'] = 0 
+    df['Category'] = df['Book'].apply(categorize_book)
     return df
 
-# Function to get image for a book
 def get_image(book_name):
     if book_name in IMAGE_MAPPING:
         image_path = os.path.join('book_images', IMAGE_MAPPING[book_name])
@@ -79,13 +89,11 @@ def get_image(book_name):
             return Image.open(image_path)
     return Image.new('RGB', (200, 300), color='gray')
 
-# Function to convert image to base64
 def image_to_base64(img):
     buffered = io.BytesIO()
     img.save(buffered, format="PNG")
     return base64.b64encode(buffered.getvalue()).decode()
 
-# Initialize session state
 if 'cart' not in st.session_state:
     st.session_state.cart = defaultdict(int)
 
@@ -100,46 +108,60 @@ def remove_from_cart(book):
             del st.session_state.cart[book]
         st.success(f"Removed {book} from cart!")
 
+def display_book(row):
+    img = get_image(row['Book'])
+    img_base64 = image_to_base64(img.resize((150, 200)))
+    st.markdown(f"""
+    <div class="book-container">
+        <div style="display: flex; align-items: center;">
+            <div style="flex: 1;">
+                <img src="data:image/png;base64,{img_base64}" width="150">
+            </div>
+            <div style="flex: 2; padding-left: 1rem;">
+                <h3>{row['Book']}</h3>
+                <p>Price: ${row['Price']:.2f}</p>
+                <p>In stock: {row['Count']}</p>
+                <p>Category: {row['Category']}</p>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    if st.button('Add to Cart', key=f"add_{row['Book']}"):
+        add_to_cart(row['Book'], row['Price'])
+
+
 def browse_books():
     st.title('Online Bookstore')
 
-    # Search and sort functionality
     col1, col2 = st.columns([3, 1])
     with col1:
         search_term = st.text_input('Search for a book:')
     with col2:
-        sort_option = st.selectbox('Sort by:', ['Book Title', 'In Stock'])
+        sort_option = st.selectbox('Sort by:', ['Book Title', 'In Stock', 'Category'])
+
+    categories = ['All'] + list(df['Category'].unique())
+    selected_category = st.selectbox('Filter by Category:', categories)
 
     if search_term:
         results = df[df['Book'].str.contains(search_term, case=False)]
     else:
         results = df
 
+    if selected_category != 'All':
+        results = results[results['Category'] == selected_category]
+
     if sort_option == 'Book Title':
         results = results.sort_values('Book')
     elif sort_option == 'In Stock':
         results = results.sort_values('Count', ascending=False)
+    elif sort_option == 'Category':
+        results = results.sort_values('Category')
 
-    # Display books
-    for _, row in results.iterrows():
-        img = get_image(row['Book'])
-        img_base64 = image_to_base64(img.resize((150, 200)))
-        st.markdown(f"""
-        <div class="book-container">
-            <div style="display: flex; align-items: center;">
-                <div style="flex: 1;">
-                    <img src="data:image/png;base64,{img_base64}" width="150">
-                </div>
-                <div style="flex: 2; padding-left: 1rem;">
-                    <h3>{row['Book']}</h3>
-                    <p>Price: ${row['Price']:.2f}</p>
-                    <p>In stock: {row['Count']}</p>
-                </div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button('Add to Cart', key=f"add_{row['Book']}"):
-            add_to_cart(row['Book'], row['Price'])
+    for category in results['Category'].unique():
+        st.header(f"{category} Books")
+        category_books = results[results['Category'] == category]
+        for _, row in category_books.iterrows():
+            display_book(row)
 
 def shopping_cart():
     st.title('Shopping Cart')
@@ -147,7 +169,9 @@ def shopping_cart():
         st.write("Your cart is empty.")
     else:
         total = 0
-        for book, quantity in st.session_state.cart.items():
+        items_to_remove = []
+        
+        for book, quantity in list(st.session_state.cart.items()):
             book_row = df[df['Book'] == book].iloc[0]
             img = get_image(book)
             img_base64 = image_to_base64(img.resize((100, 133)))
@@ -165,9 +189,18 @@ def shopping_cart():
             </div>
             """, unsafe_allow_html=True)
             if st.button('Remove', key=f"remove_{book}"):
-                remove_from_cart(book)
+                items_to_remove.append(book)
             total += quantity * book_row['Price']
+        
+        for book in items_to_remove:
+            remove_from_cart(book)
+        
         st.write(f"**Total: ${total:.2f}**")
+
+        if st.button("Clear Cart"):
+            st.session_state.cart.clear()
+            st.success("Cart cleared successfully!")
+            st.experimental_rerun()
 
 def checkout():
     st.title('Checkout')
@@ -181,7 +214,7 @@ def checkout():
         address = st.text_area("Shipping Address")
         if st.button("Place Order"):
             if name and email and phone and address:
-                # Prepare order summary
+
                 order_summary = "Order Summary:\n\n"
                 total = 0
                 for book, quantity in st.session_state.cart.items():
@@ -191,7 +224,6 @@ def checkout():
                     total += quantity * price
                 order_summary += f"\nTotal: ${total:.2f}"
 
-                # Send email
                 if send_email(name, email, phone, address, order_summary):
                     st.success("Order placed successfully!")
                     st.session_state.cart.clear()
@@ -230,20 +262,49 @@ def main():
         padding: 0.5rem;
         margin-bottom: 0.5rem;
     }
+    .navigation-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .navigation-button:hover {
+        background-color: #45a049;
+    }
     </style>
     """, unsafe_allow_html=True)
 
-    # Sidebar navigation
     st.sidebar.title("Navigation")
     page = st.sidebar.radio("Go to", ["Browse Books", "Shopping Cart", "Checkout"])
 
-    # Display cart summary in sidebar
-    st.sidebar.write("---")
-    st.sidebar.write("Cart Summary")
-    cart_total = sum(df[df['Book'] == book]['Price'].values[0] * quantity 
-                     for book, quantity in st.session_state.cart.items())
-    st.sidebar.write(f"Total Items: {sum(st.session_state.cart.values())}")
-    st.sidebar.write(f"Total Price: ${cart_total:.2f}")
+    st.sidebar.title("Shopping Cart")
+    if not st.session_state.cart:
+        st.sidebar.write("Your cart is empty.")
+    else:
+        total = 0
+        for book, quantity in list(st.session_state.cart.items()):
+            book_row = df[df['Book'] == book].iloc[0]
+            st.sidebar.write(f"{book} - Qty: {quantity} - ${book_row['Price']:.2f} each")
+            if st.sidebar.button('Remove', key=f"remove_{book}"):
+                remove_from_cart(book)
+            total += quantity * book_row['Price']
+        
+        st.sidebar.write(f"**Total: ${total:.2f}**")
+        
+        if st.sidebar.button("Checkout", key="checkout_button"):
+            page = "Checkout"
+
+        if st.sidebar.button("Clear Cart"):
+            st.session_state.cart.clear()
+            st.sidebar.success("Cart cleared successfully!")
+            st.experimental_rerun()
 
     # Main content
     if page == "Browse Books":
