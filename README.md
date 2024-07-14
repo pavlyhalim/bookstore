@@ -63,7 +63,7 @@ To run the Streamlit Bookstore App:
 
 2. Run the Streamlit app:
    ```
-   streamlit run book.py
+   streamlit run app.py
    ```
 
 3. Open your web browser and go to `http://localhost:8501` to view the app.
