@@ -78,7 +78,7 @@ def load_data():
     df = df[df['Book'] != '']
     df['Count'] = pd.to_numeric(df['Count'], errors='coerce')
     df = df.dropna()
-    df['Price'] = 0 
+    df['Price'] = pd.to_numeric(df['price'], errors='coerce')
     df['Category'] = df['Book'].apply(categorize_book)
     return df
 
