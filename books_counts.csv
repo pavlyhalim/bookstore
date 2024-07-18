@@ -1,93 +1,91 @@
-Book,Count
-University Physics,12
-Biochemistry,5
-Materials Chemistry,2
-Organic Chemistry,2
-Intermediate Organic Chemistry,1
-Chemistry - The Molecular Nature of Matter and Change,3
-Physical Chemistry,1
-Fundamentals of Molecular Spectroscopy,1
-Biology Sixth Edition,1
-Becker's World of the Cell,2
-Molecular Biology of the Cell,1
-Calculus - Metric Version - 9E - Cengage,5
-Calculus - Complete Course - 9E - Pearson,1
-Linear Algebra and its Applications (6th Edition),4
-Elementary Linear Algebra - Metric Version,2
-Algebra - Michael Artin (Second Edition),1
-Mathematical Statistics and Data Analysis (3rd Edition),6
-Mathematics: A Discrete Introduction - Cengage - 3rd Edition,6
-Discrete Mathematics and its Applications - Eighth Edition,1
-Elementary Differential Equations and Boundary Value Problems (12th Edition),4
-Precalculus - Mathematics for Calculus - Metric Version,1
-A Student's Guide to Maxwell's Equations,1
-Introduction to Probability and Statistics - 15th Edition,1
-Computer Netowrking - A Top Down Approach - 8th Edition,2
-Engineering Problem Solving with C++ - 3rd Edition,5
-Data Structures and Algorithm Analysis in C++ - 4th Edition,1
-Introduction to Time Series using Stata - Revised Edition,3
-Numerical Methods in Physics with Python - 2nd Edition,2
-Understanding  Molecular Simulation from Algorithms to Applications - 2nd edition,1
-Computer Systems: A Programmer's Perspective - Randal E. Bryant - 3rd edition,1
-Principles of International Politics - 5th Edition,1
-Cases and Materials on International Law - 9th Edition,3
-Reason and Responsibility - Readings in some Basic problems of philosophy -16th edition,1
-"Contract Law, Texts, Cases, and Materials - 10th Edition",1
-Social Science Methodology - 2nd Edition,2
-Organizational Behaviour - 10th Edition,1
-Criminological Theory: Past to Present - 7th Edition,3
-Gender Through The Prism of Difference - 6th Edition,1
-Karl Marx - Capital Volume 1,1
-Karl Marx Selected Writings - Oxford - 2nd Edition,2
-International Law - Second Edition,1
-GRE Prep Plus 2023,1
-The Annotated Arabian Nights - Tales from 1001 Nights,1
-Manhattan GMAT Algebra - Fifth Edition,1
-The Official Guide to the GRE Revised General Test,1
-Introduction to Computer Security - Pearson new International Edition,1
-Python Crash Course - 3rd Edition,1
-ARITHMETIC - GMAT series 1-12,1
-Syntax - A Generative Introduction - Fourth Edition,1
-MATLAB for Engineering Applications,1
-Operations Management  - Sustainability & Supply Chain Management- 14th Edition,1
-Microeconomics - 6th Edition,4
-Introduction to Environmental Economics - 3rd Edition,2
-Intermediate Public Economics - 2nd Edition,3
-Macroeconomics - 6th Edition,1
-An Introduction to Music Technology - 2nd Edition,2
-Engineering Ethics - 4th Edition,1
-Shigly's Mechanical Engineering Design -10th design,1
-Modern Control Systems -14th Edition,3
-An Introduction to Environmental Economics,2
-Fluid Mechanics - Fundamentals and Applications -4th edition,1
-Callister's Materials Science and Engineering - 10th Edition,1
-"Digital Design with an Intro to Verilog, HDL, VHDL and System Verilog - 6th Edition",2
-Engineering Mechanics - Statics - 15th Edition,2
-Intermediate Microeconomics - 9th Edition,2
-International Economics Theory and Policy - 12th Edition,3
-Thermodynamics - An Engineering Approach - 9th edition,1
-Instrumentation and Control System -2nd edition,1
-Engineering Circuit Analysis - 9th edition,1
-Intro to Environmnetal Engineering and Science -3rd edition,1
-Mechanics of Materials - 8th edition,3
-Numerical Methods for Engineers - 8th edition,5
-Fox and McDonald's Introduction to Fluid Mechanics - 10th edition,1
-Fundamentals of Thermal Fluids Sciences - 5th edition,1
-Basic Complex Analysis - 3rd edition,1
-Fundamentals of Thermal Fluids Sciences - 6th edition,2
-Business Ethics - 5th edition,2
-Macroeconomics - 8th Edition,2
-Strategic Management and competitiveness and globalization concpets and cases - 13th edition,1
-"Introductry Econometrics , A Modern Approach - 7th edition",4
-Using R for Introductry Econometrics - 2nd edition,1
-Elements of Music - 3rd edition,1
-Electronic Music and sound design (Theory and Prractice with Max 8 Volume 2),1
-Foundations of Music Technology - Oxford,1
-An introduction to Modern Econmetrics using stata - stata press,1
-"Fixed Income securities - Valuation, Risk Management and Portfolio Strategies",1
-Production and Operations Analytics - 8th edition,1
-Managerial economics and Business Strategy - 10th edition,2
-The winton chartbook - A graphical history of financial markets,1
-Public Policy writing that matters - 2nd edition,1
-International Human Rights Law - 2nd edition,1
-International Human Rights - Oxford ,1
+Book,Count,price
+University Physics,12,100
+Biochemistry,5,70
+Materials Chemistry,2,100
+Organic Chemistry,2,250
+Intermediate Organic Chemistry,1,60
+Chemistry - The Molecular Nature of Matter and Change,3,60
+Physical Chemistry,1,75
+Fundamentals of Molecular Spectroscopy,1,40
+Biology Sixth Edition,1,75
+Becker's World of the Cell,2,110
+Molecular Biology of the Cell,1,120
+Calculus - Metric Version - 9E - Cengage,5,110
+Calculus - Complete Course - 9E - Pearson,1,100
+Linear Algebra and its Applications (6th Edition),4,100
+Elementary Linear Algebra - Metric Version,2,50
+Algebra - Michael Artin (Second Edition),1,90
+Mathematical Statistics and Data Analysis (3rd Edition),6,20
+Mathematics: A Discrete Introduction - Cengage - 3rd Edition,6,90
+Discrete Mathematics and its Applications - Eighth Edition,1,90
+Elementary Differential Equations and Boundary Value Problems (12th Edition),4,110
+Precalculus - Mathematics for Calculus - Metric Version,1,120
+A Student's Guide to Maxwell's Equations,1,20
+Introduction to Probability and Statistics - 15th Edition,1,85
+Computer Netowrking - A Top Down Approach - 8th Edition,2,25
+Engineering Problem Solving with C++ - 3rd Edition,5,45
+Data Structures and Algorithm Analysis in C++ - 4th Edition,1,120
+Introduction to Time Series using Stata - Revised Edition,3,70
+Numerical Methods in Physics with Python - 2nd Edition,2,75
+Understanding  Molecular Simulation from Algorithms to Applications - 2nd edition,1,80
+Computer Systems: A Programmer's Perspective - Randal E. Bryant - 3rd edition,1,150
+Principles of International Politics - 5th Edition,1,70
+Cases and Materials on International Law - 9th Edition,3,50
+Reason and Responsibility - Readings in some Basic problems of philosophy -16th edition,1,50
+"Contract Law, Texts, Cases, and Materials - 10th Edition",1,80
+Social Science Methodology - 2nd Edition,2,60
+Organizational Behaviour - 10th Edition,1,70
+Criminological Theory: Past to Present - 7th Edition,3,80
+Gender Through The Prism of Difference - 6th Edition,1,80
+Karl Marx - Capital Volume 1,1,30
+Karl Marx Selected Writings - Oxford - 2nd Edition,2,50
+International Law - Second Edition,1,75
+GRE Prep Plus 2023,1,30
+The Annotated Arabian Nights - Tales from 1001 Nights,1,60
+The Official Guide to the GRE Revised General Test,1,35
+Introduction to Computer Security - Pearson new International Edition,1,90
+Python Crash Course - 3rd Edition,1,25
+ARITHMETIC - GMAT series 1-12,1,60
+Syntax - A Generative Introduction - Fourth Edition,1,60
+MATLAB for Engineering Applications,1,50
+Operations Management  - Sustainability & Supply Chain Management- 14th Edition,1,200
+Microeconomics - 6th Edition,4,100
+Introduction to Environmental Economics - 3rd Edition,2,60
+Intermediate Public Economics - 2nd Edition,3,100
+Macroeconomics - 6th Edition,1,60
+An Introduction to Music Technology - 2nd Edition,2,50
+Engineering Ethics - 4th Edition,1,60
+Shigly's Mechanical Engineering Design -10th design,1,70
+Modern Control Systems -14th Edition,3,250
+Fluid Mechanics - Fundamentals and Applications -4th edition,1,20
+Callister's Materials Science and Engineering - 10th Edition,1,75
+"Digital Design with an Intro to Verilog, HDL, VHDL and System Verilog - 6th Edition",2,300
+Engineering Mechanics - Statics - 15th Edition,2,75
+Intermediate Microeconomics - 9th Edition,2,30
+International Economics Theory and Policy - 12th Edition,3,50
+Thermodynamics - An Engineering Approach - 9th edition,1,20
+Instrumentation and Control System -2nd edition,1,40
+Engineering Circuit Analysis - 9th edition,1,140
+Intro to Environmnetal Engineering and Science -3rd edition,1,400
+Mechanics of Materials - 8th edition,3,25
+Numerical Methods for Engineers - 8th edition,5,200
+Fox and McDonald's Introduction to Fluid Mechanics - 10th edition,1,50
+Fundamentals of Thermal Fluids Sciences - 5th edition,1,50
+Basic Complex Analysis - 3rd edition,1,200
+Fundamentals of Thermal Fluids Sciences - 6th edition,2,100
+Business Ethics - 5th edition,2,100
+Macroeconomics - 8th Edition,2,450
+Strategic Management and competitiveness and globalization concpets and cases - 13th edition,1,20
+"Introductry Econometrics , A Modern Approach - 7th edition",4,310
+Using R for Introductry Econometrics - 2nd edition,1,25
+Elements of Music - 3rd edition,1,65
+Electronic Music and sound design (Theory and Prractice with Max 8 Volume 2),1,45
+Foundations of Music Technology - Oxford,1,80
+An introduction to Modern Econmetrics using stata - stata press,1,75
+"Fixed Income securities - Valuation, Risk Management and Portfolio Strategies",1,85
+Production and Operations Analytics - 8th edition,1,130
+Managerial economics and Business Strategy - 10th edition,2,100
+The winton chartbook - A graphical history of financial markets,1,100
+Public Policy writing that matters - 2nd edition,1,25
+International Human Rights Law - 2nd edition,1,60
+International Human Rights - Oxford ,1,100
