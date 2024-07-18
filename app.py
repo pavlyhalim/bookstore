@@ -119,7 +119,7 @@ def display_book(row):
             </div>
             <div style="flex: 2; padding-left: 1rem;">
                 <h3>{row['Book']}</h3>
-                <p>Price: ${row['Price']:.2f}</p>
+                <p>Price: AED{row['Price']:.2f}</p>
                 <p>In stock: {row['Count']}</p>
                 <p>Category: {row['Category']}</p>
             </div>
